@@ -1,4 +1,5 @@
 import 'package:comprar_oque/screens/home.dart';
+import 'package:comprar_oque/screens/list.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,13 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Lista de Compras',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      routes:{
-        "/": (context) => const HomePurchaseListWidget()
+      routes: {
+        "/": (context) => const HomeBuyListWidget(),
+        "/list": (context) => const ListWidget(),
       },
       initialRoute: "/",
     );
