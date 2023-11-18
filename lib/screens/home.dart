@@ -10,7 +10,7 @@ class HomeBuyListWidget extends StatefulWidget {
 }
 
 class _HomeBuyListWidgetState extends State<HomeBuyListWidget> {
-  final List<BuyList> _buyList = [
+  final List<BuyList> _buyLists = [
     BuyList('Mercado'),
     BuyList('Feira'),
     BuyList('Roupas'),
@@ -22,7 +22,7 @@ class _HomeBuyListWidgetState extends State<HomeBuyListWidget> {
     String newItem = itemController.text;
     if (newItem.isNotEmpty) {
       setState(() {
-        _buyList.add(BuyList(newItem));
+        _buyLists.add(BuyList(newItem));
         itemController.clear();
       });
     }
@@ -34,9 +34,9 @@ class _HomeBuyListWidgetState extends State<HomeBuyListWidget> {
     });
   }
 
-  _deleteItem(BuyList buyList) {
+  _deleteBuyList(BuyList buyList) {
     setState(() {
-      _buyList.remove(buyList);
+      _buyLists.remove(buyList);
     });
   }
 
@@ -85,7 +85,7 @@ class _HomeBuyListWidgetState extends State<HomeBuyListWidget> {
   }
 
   List<Widget> _buildBuyListCards() {
-    return _buyList
+    return _buyLists
         .map((buyList) => GestureDetector(
               onTap: () => routeToList(buyList),
               child: Card(
@@ -119,7 +119,7 @@ class _HomeBuyListWidgetState extends State<HomeBuyListWidget> {
                             textOK: const Text('Sim'),
                             textCancel: const Text('Não'),
                           )) {
-                            _deleteItem(buyList);
+                            _deleteBuyList(buyList);
                           }
                         },
                         icon: const Icon(Icons.delete),

@@ -1,5 +1,5 @@
 import 'package:comprar_oque/screens/home.dart';
-import 'package:comprar_oque/screens/list.dart';
+import 'package:comprar_oque/screens/ItemsList.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "/": (context) => const HomeBuyListWidget(),
-        "/list": (context) => const ListWidget(),
+        "/list": (context) => const ItemListWidget(),
       },
       initialRoute: "/",
     );

@@ -1,4 +1,5 @@
-import 'package:comprar_oque/models/itemList.dart';
+import 'package:comprar_oque/enums/ItemCategory.dart';
+import 'package:comprar_oque/models/item.dart';
 import 'package:uuid/uuid.dart';
 
 class BuyList {
@@ -6,7 +7,7 @@ class BuyList {
   final String title;
   bool favorite = false;
 
-  List<ItemList> items = [];
+  List<Item> items = [Item("teste", 20, ItemCategory.food)];
 
   BuyList(this.title);
 }
