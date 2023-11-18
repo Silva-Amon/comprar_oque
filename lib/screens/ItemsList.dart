@@ -25,6 +25,14 @@ class _ItemListWidgetState extends State<ItemListWidget> {
     });
   }
 
+  _setPurchasedItem(BuyList buyList, Item item, bool? purchased) {
+    setState(() {
+      buyList.items
+          .firstWhere((existItem) => existItem.id == item.id)
+          .purchased = purchased ?? false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final buyList = ModalRoute.of(context)!.settings.arguments as BuyList;
@@ -64,11 +72,24 @@ class _ItemListWidgetState extends State<ItemListWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                      child: Checkbox(
+                          checkColor: Colors.white,
+                          fillColor: MaterialStateProperty.all(Colors.blue),
+                          value: item.purchased,
+                          onChanged: (bool? purchased) =>
+                              _setPurchasedItem(buyList, item, purchased)),
+                    ),
+                    Padding(
                       padding: const EdgeInsets.only(left: 30.0, right: 10.0),
                       child: Text(item.title,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 16)),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                              decoration: item.purchased
+                                  ? TextDecoration.lineThrough
+                                  : null)),
                     ),
                     Flexible(
                       child: Text(
@@ -76,8 +97,12 @@ class _ItemListWidgetState extends State<ItemListWidget> {
                                   locale: 'pt_Br', decimalDigits: 2)
                               .format(item.price),
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 16)),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                              decoration: item.purchased
+                                  ? TextDecoration.lineThrough
+                                  : null)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0, right: 10.0),

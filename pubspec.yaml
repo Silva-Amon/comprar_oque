@@ -37,6 +37,7 @@ dependencies:
   uuid: ^4.0.0
   confirm_dialog: ^1.0.2
   intl: ^0.18.1
+  material: ^1.0.0
 
 dev_dependencies:
   flutter_test:
