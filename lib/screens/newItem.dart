@@ -48,7 +48,7 @@ class _NewItemWidgetState extends State<NewItemWidget> {
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true)),
             DropdownButton<ItemCategory>(
-              value: ItemCategory.values.first,
+              value: categoryItemSelected,
               onChanged: (ItemCategory? newValue) {
                 setState(() {
                   categoryItemSelected = newValue;
