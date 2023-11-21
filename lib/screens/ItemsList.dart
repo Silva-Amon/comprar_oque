@@ -1,6 +1,7 @@
 import 'package:comprar_oque/models/buyList.dart';
 import 'package:comprar_oque/models/item.dart';
 import 'package:comprar_oque/screens/newItem.dart';
+import 'package:comprar_oque/utils/CurrencyInputFormatter.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -34,7 +35,6 @@ class _ItemListWidgetState extends State<ItemListWidget> {
   }
 
   _setPurchasedItem(BuyList buyList, Item item, bool? purchased) {
-    print("chamei o metodo ${item.id.toString()}");
     setState(() {
       buyList.items
           .firstWhere((existItem) => existItem.id == item.id)
@@ -100,9 +100,8 @@ class _ItemListWidgetState extends State<ItemListWidget> {
                     ),
                     Flexible(
                       child: Text(
-                          NumberFormat.simpleCurrency(
-                                  locale: 'pt_Br', decimalDigits: 2)
-                              .format(item.price),
+                          CurrencyInputFormatter.formatCurrency(
+                              item.price.toString()),
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontWeight: FontWeight.w700,

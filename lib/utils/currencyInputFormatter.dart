@@ -9,14 +9,20 @@ class CurrencyInputFormatter extends TextInputFormatter {
       return newValue;
     }
 
-    double value = double.parse(newValue.text);
+    String newText = formatCurrency(newValue.text);
+
+    return newValue.copyWith(
+        text: newText,
+        selection: TextSelection.collapsed(offset: newText.length));
+  }
+
+  static formatCurrency(String numberValue) {
+    double value = double.parse(numberValue);
 
     final formatter = NumberFormat.simpleCurrency(locale: "pt_Br");
 
     String newText = formatter.format(value / 100);
 
-    return newValue.copyWith(
-        text: newText,
-        selection: TextSelection.collapsed(offset: newText.length));
+    return newText;
   }
 }

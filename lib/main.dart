@@ -1,6 +1,5 @@
 import 'package:comprar_oque/screens/home.dart';
 import 'package:comprar_oque/screens/ItemsList.dart';
-import 'package:comprar_oque/screens/newItem.dart';
 import 'package:flutter/material.dart';
 
 void main() {
