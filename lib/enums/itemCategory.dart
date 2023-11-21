@@ -1,1 +1,1 @@
-enum ItemCategory { food, hygiene, superfluous, home, others }
+enum ItemCategory { comida, higiene, superfluos, casa, outros }

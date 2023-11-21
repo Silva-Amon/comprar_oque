@@ -1,8 +1,9 @@
-import 'package:comprar_oque/enums/ItemCategory.dart';
+import 'package:comprar_oque/enums/itemCategory.dart';
+
 import 'package:uuid/uuid.dart';
 
 class Item {
-  final String? id = const Uuid().toString();
+  final String? id = const Uuid().v4().toString();
   final String title;
   double price;
   ItemCategory category;

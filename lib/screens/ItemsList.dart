@@ -1,6 +1,6 @@
-import 'package:comprar_oque/enums/ItemCategory.dart';
 import 'package:comprar_oque/models/buyList.dart';
 import 'package:comprar_oque/models/item.dart';
+import 'package:comprar_oque/screens/newItem.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -13,10 +13,18 @@ class ItemListWidget extends StatefulWidget {
 }
 
 class _ItemListWidgetState extends State<ItemListWidget> {
-  _addItem(BuyList buyList, Item newItem) {
-    setState(() {
-      buyList.items.add(newItem);
-    });
+  routeToAddNewItem(BuyList buyList) {
+    addItem(Item newItem) {
+      setState(() {
+        buyList.items.add(newItem);
+      });
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => NewItemWidget(onItemAdded: addItem)),
+    );
   }
 
   _deleteItem(BuyList buyList, Item item) {
@@ -26,6 +34,7 @@ class _ItemListWidgetState extends State<ItemListWidget> {
   }
 
   _setPurchasedItem(BuyList buyList, Item item, bool? purchased) {
+    print("chamei o metodo ${item.id.toString()}");
     setState(() {
       buyList.items
           .firstWhere((existItem) => existItem.id == item.id)
@@ -53,9 +62,7 @@ class _ItemListWidgetState extends State<ItemListWidget> {
       ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          //TODO: create a dialog/screen to add a new item
-          Item newItem = Item('Teste Novo', 50, ItemCategory.others);
-          _addItem(buyList, newItem);
+          routeToAddNewItem(buyList);
         },
         backgroundColor: Colors.blue,
         child: const Icon(Icons.add),
